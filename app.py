@@ -23,12 +23,12 @@ def get_user(user_id):
             return jsonify(user), 200
     return jsonify({'error': 'User not found'}), 404
 
-# POST - Create new user
+# POST - Creates new user
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
 
-    # Accept both capitalized and lowercase keys
+    # Accepts both capitalized and lowercase keys
     name = data.get('name') or data.get('Name')
     email = data.get('email') or data.get('Email')
 
@@ -43,7 +43,7 @@ def create_user():
     users.append(new_user)
     return jsonify(new_user), 201
 
-# PUT - Update user by ID
+# PUT - Updates user by ID
 @app.route('/users/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     data = request.get_json()
@@ -56,7 +56,7 @@ def update_user(user_id):
 
     return jsonify({'error': 'User not found'}), 404
 
-# DELETE - Remove user by ID
+# DELETE - Removes user by ID
 @app.route('/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     for index, user in enumerate(users):
